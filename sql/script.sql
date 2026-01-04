@@ -46,3 +46,5 @@ CREATE TABLE avis (
 	FOREIGN KEY (user_id) REFERENCES users(id),
 	FOREIGN KEY (vehicule_id) REFERENCES vehicule(id_v)
 );
+alter table users 
+add column approuve boolean default false;
