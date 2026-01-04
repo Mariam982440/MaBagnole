@@ -48,3 +48,32 @@ CREATE TABLE avis (
 );
 alter table users 
 add column approuve boolean default false;
+
+CREATE VIEW ListeVehicules AS
+SELECT 
+    v.*, 
+    c.nom AS categorie_nom, 
+    AVG(a.note) AS note_moyenne
+FROM vehicule v
+LEFT JOIN categories c ON v.c_id = c.id_c
+LEFT JOIN avis a ON v.id_v = a.vehicule_id
+GROUP BY v.id_v;
+
+
+DELIMITER //
+CREATE PROCEDURE AjouterReservation(
+    IN p_debut DATE,
+    IN p_fin DATE,
+    IN p_prise VARCHAR(100),
+    IN p_retour VARCHAR(100),
+    IN p_user INT,
+    IN p_vehicule INT
+)
+BEGIN
+    INSERT INTO reservations 
+    (date_debut, date_fin, lieu_prise, lieu_retour, user_id, vehicule_id)
+    VALUES 
+    (p_debut, p_fin, p_prise, p_retour, p_user, p_vehicule);
+END //
+
+DELIMITER ;

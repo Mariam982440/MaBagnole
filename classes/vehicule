@@ -22,6 +22,25 @@ class Vehicule {
         $this->c_id = $c_id;
     }
 
+    public function __set($name, $value) {
+        // on vérifie si la propriété existe dans cette classe
+        if (property_exists($this, $name)) {
+            // validation du prix 
+            if ($name === "prix_jours" && $value < 0) {
+                throw new Exception("Le prix ne peut pas être négatif.");
+            }
+
+            $this->$name = $value;
+        } else {
+            throw new Exception("La propriété '$name' n'existe pas dans la classe Vehicule.");
+        }
+    }
+
+    public function __get($name) {
+        if (property_exists($this, $name)) {
+            return $this->$name;
+        }
+    }
 
 
     public function ajouter() {
@@ -38,20 +57,6 @@ class Vehicule {
             $this->image,
             $this->c_id
         ]);
-    }
-
-    public function __set($name, $value) {
-        // on vérifie si la propriété existe dans cette classe
-        if (property_exists($this, $name)) {
-            
-            if ($name === "prix_jours" && $value < 0) {
-                throw new Exception("Le prix ne peut pas être négatif.");
-            }
-
-            $this->$name = $value;
-        } else {
-            throw new Exception("La propriété '$name' n'existe pas dans la classe Vehicule.");
-        }
     }
 
     public function modifier() {
