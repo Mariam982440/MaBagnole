@@ -1,7 +1,7 @@
 <?php
 class User 
 {
-    protected int $id = null;;
+    protected ?int $id = null;
     protected string $nom;
     protected string $email;
     protected string $motDePasse;
@@ -47,7 +47,7 @@ class User
     }
 
 
-    public function inscrire($nom, $email, $motDePasse, $role  ){
+    public function inscrire($nom, $email, $motDePasse){
         $sql_i = "SELECT * from users where email = ?";
         $check = $this->db->prepare($sql_i);
         $check->execute([$email]);
@@ -63,13 +63,7 @@ class User
 
         $sql = " INSERT INTO users (nom, email, mot_de_passe, role, approuve) values (?, ?, ?, ?, ?)";
         $stmt = $this->db->prepare( $sql);
-        return $stmt ->execute([$nom, $email, $hash, $role, $est_appr]);
+        return $stmt ->execute([$nom, $email, $hash, $role, $est_approuve]);
             
     }
 }
-
-
-
-
-
-

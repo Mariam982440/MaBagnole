@@ -60,7 +60,7 @@ class Reservation {
     }
 
     // modifier une réservation
-    public function modifier() {
+    public function modifierRes() {
         if (!$this->id_reservation) return false;
 
         $sql = "UPDATE reservations SET 
@@ -78,7 +78,7 @@ class Reservation {
         ]);
     }
 
-    public function annuler() {
+    public function annulerRes() {
         if (!$this->id_reservation) return false;
 
         $sql = "DELETE FROM reservations WHERE id_reservation = ?";

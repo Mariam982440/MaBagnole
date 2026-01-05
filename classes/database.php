@@ -10,22 +10,22 @@ class Database {
     private string $password = "";
 
 
-    private function __contruct ()
+    private function __construct ()
     {
         try {
-           $this->$connection = new pdo(
+           $this->connection = new PDO(
             "mysql:host={$this->host};dbname={$this->dbName};charset=utf8mb4",
             $this->username,
             $this->password
             );
             
         }
-        catch (PDOexeption $e){
+        catch (PDOException $e){
             die("erreur de connection à la base données".$e->getMessage());
         }
 
-        $this->$connection->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-        $this->$connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+        $this->connection->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+        $this->connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     
     } 
 
