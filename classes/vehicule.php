@@ -1,5 +1,5 @@
 <?php
-
+require_once 'database.php';
 class Vehicule {
     private $db;
     
@@ -136,7 +136,7 @@ class Vehicule {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    //  récupérer toute les catégories (pour le menu de filtrage)
+    // récupérer toute les catégories (pour le menu de filtrage)
     public function getCategories() {
         return $this->db->query("SELECT * FROM categories")->fetchAll(PDO::FETCH_ASSOC);
     }

@@ -1,5 +1,5 @@
 <?php
-
+require_once 'database.php';
 class Avis {
     private $db;
 
@@ -8,7 +8,7 @@ class Avis {
     private $note;
     private $commentaire;
     private $date_avis;
-    private $actif; // pour le Soft Delete 1 = visible et 0 = supprimé
+    private $actif; // pour le soft Delete 1 = visible et 0 = supprimé
     private $user_id;
     private $vehicule_id;
 
@@ -34,7 +34,7 @@ class Avis {
     }
 
     
-    public function ajouterAvis() {
+    public function ajouter() {
         $sql = "INSERT INTO avis (note, commentaire, user_id, vehicule_id) VALUES (?, ?, ?, ?)";
         $stmt = $this->db->prepare($sql);
         return $stmt->execute([

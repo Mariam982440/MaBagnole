@@ -78,7 +78,7 @@ class Reservation {
         ]);
     }
 
-    public function annulerRes() {
+    public function annulerR() {
         if (!$this->id_reservation) return false;
 
         $sql = "DELETE FROM reservations WHERE id_reservation = ?";
